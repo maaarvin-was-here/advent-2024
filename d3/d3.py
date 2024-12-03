@@ -13,6 +13,7 @@ def process(f):
 def d3_1(lines):
     sol = 0
     for line in lines:
+        # matches characters 'mul(' + any number + ',' + any number + ')'
         for match in re.finditer(r"mul[\(]\d+[\,]\d+[\)]", line):
             eq = match.group(0)
             r1 = eq.split(",")[0].split("(")[1]
@@ -25,6 +26,7 @@ def d3_2(lines):
     sol = 0
     enabled = True
     for line in lines:
+        # matches from part 1 OR "don't()"" or "do()"
         for match in re.finditer(r"mul[\(]\d+[\,]\d+[\)]|don[\']t[\(][\)]|do[\(][\)]", line):
             eq = match.group(0)
             if eq == 'do()':
@@ -43,5 +45,5 @@ if __name__ == '__main__':
     print(input_file)
     list = process(input_file)
     
-    # print(d3_1(list))
+    print(d3_1(list))
     print(d3_2(list))
